@@ -1,65 +1,202 @@
-import Image from "next/image";
+import Shell from "@/components/Shell";
+import Section from "@/components/Section";
+import ProjectCard from "@/components/ProjectCard";
+import { site, projects, experience, skills } from "@/lib/data";
+
+function Button({
+  href,
+  children,
+  variant = "primary",
+}: {
+  href: string;
+  children: React.ReactNode;
+  variant?: "primary" | "ghost";
+}) {
+  const base =
+    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm md:text-base font-medium transition-transform duration-200 hover:-translate-y-0.5";
+  const primary =
+    "bg-[hsl(var(--fg))] text-[hsl(var(--bg))] border border-[hsl(var(--fg))]";
+  const ghost =
+    "bg-transparent text-[hsl(var(--fg))] border border-[hsl(var(--border))]";
+
+  return (
+    <a href={href} className={`${base} ${variant === "primary" ? primary : ghost}`}>
+      {children}
+    </a>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <Shell>
+      {/* Sticky top nav */}
+      <header className="sticky top-0 z-20 border-b border-[hsl(var(--border))] bg-[hsl(var(--bg)/0.75)] backdrop-blur">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 md:px-8 py-4">
+          <a href="#top" className="font-semibold tracking-tight hover:opacity-80 transition">
+            {site.name}
+          </a>
+
+          <nav className="hidden md:flex items-center gap-6 text-sm text-[hsl(var(--muted-fg))]">
+            <a className="hover:text-[hsl(var(--fg))] transition" href="#projects">Projects</a>
+            <a className="hover:text-[hsl(var(--fg))] transition" href="#experience">Experience</a>
+            <a className="hover:text-[hsl(var(--fg))] transition" href="#skills">Skills</a>
+            <a className="hover:text-[hsl(var(--fg))] transition" href="#contact">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="top" className="mx-auto max-w-5xl px-6 md:px-8">
+        {/* HERO */}
+        <section className="py-16 md:py-24">
+          <div className="space-y-7">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[hsl(var(--border))] px-4 py-2 text-xs md:text-sm text-[hsl(var(--muted-fg))]">
+              <span className="font-mono">{site.location}</span>
+              <span className="opacity-60">•</span>
+              <span>{site.role}</span>
+            </div>
+
+            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
+              {site.name}
+              <span className="block text-[hsl(var(--muted-fg))] mt-3 text-2xl md:text-3xl font-medium">
+                {site.headline}
+              </span>
+            </h1>
+
+            <p className="max-w-2xl text-base md:text-lg leading-relaxed text-[hsl(var(--muted-fg))]">
+              {site.subheadline}
+            </p>
+
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button href={site.ctas[0].href} variant="primary">{site.ctas[0].label}</Button>
+              <Button href={site.ctas[1].href} variant="ghost">{site.ctas[1].label}</Button>
+              <Button href={site.linkedin} variant="ghost">LinkedIn</Button>
+            </div>
+
+            <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="rounded-2xl border border-[hsl(var(--border))] p-5">
+                <p className="text-xs text-[hsl(var(--muted-fg))]">Focus</p>
+                <p className="mt-2 font-medium">ML · CV · Multimodal</p>
+              </div>
+              <div className="rounded-2xl border border-[hsl(var(--border))] p-5">
+                <p className="text-xs text-[hsl(var(--muted-fg))]">Current</p>
+                <p className="mt-2 font-medium">Thesis track (Spring 2026)</p>
+              </div>
+              <div className="rounded-2xl border border-[hsl(var(--border))] p-5">
+                <p className="text-xs text-[hsl(var(--muted-fg))]">Build style</p>
+                <p className="mt-2 font-medium">End-to-end, shipped systems</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PROJECTS */}
+        <div id="projects" />
+        <Section title="Projects">
+          <div className="grid grid-cols-1 gap-5 md:gap-6">
+            {projects.map((p) => (
+              <ProjectCard key={p.title} p={p} />
+            ))}
+          </div>
+        </Section>
+
+        {/* EXPERIENCE */}
+        <div id="experience" />
+        <Section title="Experience">
+          <div className="space-y-5">
+            {experience.map((e) => (
+              <div
+                key={e.role}
+                className="rounded-2xl border border-[hsl(var(--border))] p-6 md:p-7"
+              >
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+                  <div>
+                    <h3 className="text-lg md:text-xl font-semibold tracking-tight">
+                      {e.role}
+                    </h3>
+                    <p className="text-sm md:text-base text-[hsl(var(--muted-fg))]">
+                      {e.org}
+                    </p>
+                  </div>
+                  <span className="text-xs md:text-sm text-[hsl(var(--muted-fg))]">
+                    {e.timeframe}
+                  </span>
+                </div>
+
+                <ul className="mt-4 space-y-2 text-sm md:text-[15px] leading-relaxed text-[hsl(var(--muted-fg))]">
+                  {e.bullets.map((b, i) => (
+                    <li key={i}>• {b}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(800px circle at 15% 10%, rgba(120,120,255,0.12), transparent 40%), " +
+              "radial-gradient(800px circle at 85% 20%, rgba(0,0,0,0.04), transparent 45%)",
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        {/* SKILLS */}
+        <div id="skills" />
+        <Section title="Skills">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+            {skills.map((s) => (
+              <div
+                key={s.group}
+                className="rounded-2xl border border-[hsl(var(--border))] p-6 md:p-7"
+              >
+                <h3 className="font-semibold tracking-tight">{s.group}</h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {s.items.map((it) => (
+                    <span
+                      key={it}
+                      className="rounded-full border border-[hsl(var(--border))]
+                             px-3 py-1 text-xs font-medium text-[hsl(var(--muted-fg))]"
+                    >
+                      {it}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* CONTACT */}
+        <div id="contact" />
+        <Section title="Contact">
+          <div className="rounded-2xl border border-[hsl(var(--border))] p-6 md:p-7 space-y-3 text-[hsl(var(--muted-fg))]">
+            <p>
+              Email:{" "}
+              <a className="underline hover:opacity-80" href={`mailto:${site.email}`}>
+                {site.email}
+              </a>
+            </p>
+            <p>
+              GitHub:{" "}
+              <a className="underline hover:opacity-80" href={site.github} target="_blank" rel="noreferrer">
+                {site.github.replace("https://", "")}
+              </a>
+            </p>
+            <p>
+              LinkedIn:{" "}
+              <a className="underline hover:opacity-80" href={site.linkedin} target="_blank" rel="noreferrer">
+                {site.linkedin.replace("https://", "")}
+              </a>
+            </p>
+          </div>
+        </Section>
+
+        <footer className="py-12 text-sm text-[hsl(var(--muted-fg))]">
+          © {new Date().getFullYear()} {site.name}
+        </footer>
       </main>
-    </div>
+    </Shell>
   );
 }
