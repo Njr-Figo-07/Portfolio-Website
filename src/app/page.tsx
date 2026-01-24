@@ -95,7 +95,7 @@ export default function Home() {
 
         {/* PROJECTS */}
         <Section title="Projects">
-          <div id="projects" />
+          <div id="projects" className="scroll-mt-28" />
           <div className="grid grid-cols-1 gap-5 md:gap-5">
             {projects.map((p) => (
               <ProjectCard key={p.title} p={p} />
@@ -104,7 +104,7 @@ export default function Home() {
         </Section>
 
         {/* EXPERIENCE */}
-        <div id="experience" />
+        <div id="experience" className="scroll-mt-28" />
         <Section title="Experience">
           <div className="space-y-4">
             {experience.map((e) => (
@@ -147,7 +147,7 @@ export default function Home() {
         />
 
         {/* SKILLS */}
-        <div id="skills" />
+        <div id="skills" className="scroll-mt-28" />
         <Section title="Skills">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
             {skills.map((s) => (
@@ -173,7 +173,7 @@ export default function Home() {
         </Section>
 
         {/* CONTACT */}
-        <div id="contact" />
+        <div id="contact" className="scroll-mt-28" />
         <Section title="Contact">
           <div className="rounded-2xl border border-[hsl(var(--border))] p-6 md:p-7 space-y-3 text-[hsl(var(--muted-fg))]">
             <p>
@@ -182,17 +182,12 @@ export default function Home() {
                 {site.email}
               </a>
             </p>
-            <p>
-              GitHub:{" "}
-              <a className="underline hover:opacity-80" href={site.github} target="_blank" rel="noreferrer">
-                {site.github.replace("https://", "")}
-              </a>
+            <p className="text-[hsl(var(--muted-fg))]">
+              Currently open to internships, research collaborations, and full-time AI/ML roles starting 2026.
             </p>
-            <p>
-              LinkedIn:{" "}
-              <a className="underline hover:opacity-80" href={site.linkedin} target="_blank" rel="noreferrer">
-                {site.linkedin.replace("https://", "")}
-              </a>
+
+            <p className="text-sm text-[hsl(var(--muted-fg))]">
+              I typically respond within 24–48 hours.
             </p>
           </div>
         </Section>

@@ -1,5 +1,7 @@
 // src/lib/data.ts
 
+import { group } from "console";
+
 export const site = {
   name: "Figo Cardozo",
   role: "CS Master’s @ Ohio State · AI / ML Engineer",
@@ -124,16 +126,25 @@ export const experience = [
 
 export const skills = [
   {
-    group: "ML / AI",
-    items: ["PyTorch", "TensorFlow", "scikit-learn", "LLMs", "Computer Vision", "NLP"],
+    group: "AI / ML",
+    items: ["PyTorch", "TensorFlow", "scikit-learn", "LLMs", "Computer Vision", "NLP", "Deep Learning", "Neural Networks", "Attention", "SSLs", "Transformers", "Speech Emotion Recognition", "Prompt Engineering"],
   },
   {
     group: "Data / Analytics",
-    items: ["Python", "SQL", "Pandas", "NumPy", "Tableau", "EDA"],
+    items: ["Python", "SQL", "Pandas", "NumPy", "Tableau", "EDA", "Power BI", "Snowflake", "ETL", "Data Cleaning", "Data Preprocessing"],
   },
   {
     group: "Engineering / Tools",
-    items: ["Git/GitHub", "APIs", "OpenCV", "Cloud Basics"],
+    items: ["Git/GitHub", "APIs", "OpenCV", "Software Design", "APIs", "Django", "Linux", "Flutter", "Dart", "Mobile App Development"],
+  },
+  {
+    group: "Cloud / Infrastructure",
+    items: ["Cloud Computing", "AWS", "GCP", "HPC / SLURM", "Cloud Basics", "Ohio Super Computer(OSC)"],
+  },
+  {
+    group: "Research / Advanced ML",
+    items: ["Multimodal Learning", "Audio-Visual Modeling", "Cross-Modal Learning", "Representation Learning", "Fine-Tuning LLMs", "Interpretability / Explainable AI", 
+        "Evaluation Metrics (MSE, SRCC, MOS)"],
   },
 ];
 
