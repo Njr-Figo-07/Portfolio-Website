@@ -30,25 +30,29 @@ export default function Home() {
   return (
     <Shell>
       {/* Sticky top nav */}
-      <header className="sticky top-0 z-20 border-b border-[hsl(var(--border))] bg-[hsl(var(--bg)/0.75)] backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 md:px-8 py-4">
-          <a href="#top" className="font-semibold tracking-tight hover:opacity-80 transition">
+      <header className="sticky top-0 z-20 border-b border-[hsl(var(--border))] bg-[hsl(var(--bg)/0.85)] backdrop-blur">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 md:px-8 py-6">
+          <a href="#top" className="relative hover:text-lg md:text-xl font-semibold tracking-tight transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black after:transition-all hover:after:w-full">
             {site.name}
           </a>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm text-[hsl(var(--muted-fg))]">
-            <a className="hover:text-[hsl(var(--fg))] transition" href="#projects">Projects</a>
-            <a className="hover:text-[hsl(var(--fg))] transition" href="#experience">Experience</a>
-            <a className="hover:text-[hsl(var(--fg))] transition" href="#skills">Skills</a>
-            <a className="hover:text-[hsl(var(--fg))] transition" href="#contact">Contact</a>
+          <nav className="hidden md:flex items-center gap-8 text-base text-[hsl(var(--muted-fg))]">            
+            <a className="relative hover:text-[hsl(var(--fg))] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black after:transition-all hover:after:w-full"
+ href="#projects">Projects</a>
+            <a className="relative hover:text-[hsl(var(--fg))] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black after:transition-all hover:after:w-full"
+ href="#experience">Experience</a>
+            <a className="relative hover:text-[hsl(var(--fg))] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black after:transition-all hover:after:w-full"
+ href="#skills">Skills</a>
+            <a className="relative hover:text-[hsl(var(--fg))] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black after:transition-all hover:after:w-full"
+ href="#contact">Contact</a>
           </nav>
         </div>
       </header>
 
       <main id="top" className="mx-auto max-w-5xl px-6 md:px-8">
         {/* HERO */}
-        <section className="py-16 md:py-24">
-          <div className="space-y-7">
+        <section className="pt-12 pb-10 md:pt-16 md:pb-12">
+          <div className="space-y-8 text-center flex flex-col items-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-[hsl(var(--border))] px-4 py-2 text-xs md:text-sm text-[hsl(var(--muted-fg))]">
               <span className="font-mono">{site.location}</span>
               <span className="opacity-60">•</span>
@@ -62,26 +66,26 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="max-w-2xl text-base md:text-lg leading-relaxed text-[hsl(var(--muted-fg))]">
+            <p className="max-w-2xl text-base md:text-lg leading-relaxed text-[hsl(var(--muted-fg))] text-center">
               {site.subheadline}
             </p>
 
-            <div className="flex flex-wrap gap-3 pt-2">
+            <div className="flex flex-wrap gap-3 justify-center">
               <Button href={site.ctas[0].href} variant="primary">{site.ctas[0].label}</Button>
               <Button href={site.ctas[1].href} variant="ghost">{site.ctas[1].label}</Button>
               <Button href={site.linkedin} variant="ghost">LinkedIn</Button>
             </div>
 
-            <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="rounded-2xl border border-[hsl(var(--border))] p-5">
+            <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 w-full max-w-4xl">
+              <div className="rounded-2xl border border-[hsl(var(--border))] p-5 text-center">
                 <p className="text-xs text-[hsl(var(--muted-fg))]">Focus</p>
-                <p className="mt-2 font-medium">ML · CV · Multimodal</p>
+                <p className="mt-2 font-medium">AI · ML · Multimodal</p>
               </div>
-              <div className="rounded-2xl border border-[hsl(var(--border))] p-5">
+              <div className="rounded-2xl border border-[hsl(var(--border))] p-5 text-center">
                 <p className="text-xs text-[hsl(var(--muted-fg))]">Current</p>
                 <p className="mt-2 font-medium">Thesis track (Spring 2026)</p>
               </div>
-              <div className="rounded-2xl border border-[hsl(var(--border))] p-5">
+              <div className="rounded-2xl border border-[hsl(var(--border))] p-5 text-center">
                 <p className="text-xs text-[hsl(var(--muted-fg))]">Build style</p>
                 <p className="mt-2 font-medium">End-to-end, shipped systems</p>
               </div>
@@ -90,9 +94,9 @@ export default function Home() {
         </section>
 
         {/* PROJECTS */}
-        <div id="projects" />
         <Section title="Projects">
-          <div className="grid grid-cols-1 gap-5 md:gap-6">
+          <div id="projects" />
+          <div className="grid grid-cols-1 gap-5 md:gap-5">
             {projects.map((p) => (
               <ProjectCard key={p.title} p={p} />
             ))}
@@ -102,7 +106,7 @@ export default function Home() {
         {/* EXPERIENCE */}
         <div id="experience" />
         <Section title="Experience">
-          <div className="space-y-5">
+          <div className="space-y-4">
             {experience.map((e) => (
               <div
                 key={e.role}

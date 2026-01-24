@@ -5,17 +5,24 @@ type Project = {
   timeframe: string;
   tags: string[];
   bullets: string[];
+  link?: string;
 };
 
 export default function ProjectCard({ p }: { p: Project }) {
+  const Wrapper = p.link ? "a" : "div";
+
   return (
-    <div
-      className="group rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--bg))]
-                 p-6 md:p-7 transition-all duration-200
-                 hover:-translate-y-1 hover:shadow-[0_12px_40px_-20px_rgba(0,0,0,0.35)]"
+    <Wrapper
+      href={p.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block rounded-2xl border border-[hsl(var(--border))] bg-white p-6 md:p-7
+                 transition-all duration-200
+                 hover:-translate-y-1 hover:shadow-[0_16px_60px_-30px_rgba(0,0,0,0.25)]
+                 hover:border-black/20 cursor-pointer"
     >
       <div className="flex items-start justify-between gap-4">
-        <h3 className="text-lg md:text-xl font-semibold tracking-tight">
+        <h3 className="text-lg md:text-xl font-semibold tracking-tight group-hover:underline">
           {p.title}
         </h3>
         <span className="text-xs md:text-sm text-[hsl(var(--muted-fg))]">
@@ -41,10 +48,11 @@ export default function ProjectCard({ p }: { p: Project }) {
         ))}
       </ul>
 
-      <div className="mt-6 h-px w-full bg-[hsl(var(--border))] opacity-60" />
-      <p className="mt-4 text-xs text-[hsl(var(--muted-fg))]">
-        Hover for focus · Built by <span className="font-medium text-[hsl(var(--fg))]">Figo</span>
-      </p>
-    </div>
+      {p.link && (
+        <p className="mt-5 text-sm font-medium text-black opacity-70 group-hover:opacity-100">
+          Visit project →
+        </p>
+      )}
+    </Wrapper>
   );
 }

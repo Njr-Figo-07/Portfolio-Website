@@ -15,7 +15,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Figo Cardozo — Portfolio",
+  title: "Figo Cardozo Portfolio Website",
   description: "Portfolio + resume of Figo Cardozo.",
 };
 
